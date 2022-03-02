@@ -71,9 +71,12 @@ document.getElementById("book-form").addEventListener("submit", (e) => {
   if (title === "" || author === "" || isbn === "") {
     ui.showAlert("Please fill in all fields", "error");
   } else {
-    ui.addBookToList(book);
-    ui.showAlert("Book added!", "success");
-    ui.clearFileds();
+    if (!isNaN(parseFloat(isbn)) && isFinite(isbn)) {
+      ui.addBookToList(book);
+      ui.showAlert("Book added!", "success");
+      ui.clearFileds();
+    }
+    ui.showAlert("Please enter in ISBN - book number", "error");
   }
 
   e.preventDefault();
