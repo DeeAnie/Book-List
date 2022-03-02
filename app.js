@@ -11,13 +11,12 @@ function UI() {}
 /* UI Prototype Methods */
 UI.prototype.addBookToList = function (book) {
   // Find the table
-  // Create tr element
-  // Insert cols
-  // Append to table
-
   const list = document.getElementById("book-list");
+
+  // Create tr element
   const row = document.createElement("tr");
 
+  // Insert cols
   row.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
@@ -25,6 +24,7 @@ UI.prototype.addBookToList = function (book) {
     <td><a href= "#" class = "delete">X</a></td>
     `;
 
+  // Append to table
   list.appendChild(row);
 };
 
@@ -55,16 +55,14 @@ UI.prototype.clearFileds = function () {
 /* Event Listeners */
 document.getElementById("book-form").addEventListener("submit", (e) => {
   // Get form values
-  // Instance of book
-  // Instance of UI
-  // Add book to List
-  // Clear fields
-
   const title = document.getElementById("title").value,
     author = document.getElementById("author").value,
     isbn = document.getElementById("isbn").value;
 
+  // Instance of book
   const book = new Book(title, author, isbn);
+
+  // Instance of UI
   const ui = new UI();
 
   // Validate
@@ -72,11 +70,15 @@ document.getElementById("book-form").addEventListener("submit", (e) => {
     ui.showAlert("Please fill in all fields", "error");
   } else {
     if (!isNaN(parseFloat(isbn)) && isFinite(isbn)) {
+      // Add book to List
       ui.addBookToList(book);
       ui.showAlert("Book added!", "success");
-      ui.clearFileds();
+
+      // Clear fields
+      ui.clearFields();
+    } else {
+      ui.showAlert("Please enter in ISBN - book number", "error");
     }
-    ui.showAlert("Please enter in ISBN - book number", "error");
   }
 
   e.preventDefault();
