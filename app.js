@@ -29,7 +29,7 @@ UI.prototype.addBookToList = function (book) {
 };
 
 /* Show Alert */
-UI.prototype.showAlert = function (msg, className) {
+UI.prototype.showAlert = function(msg, className) {
   const div = document.createElement("div");
   div.className = `alert ${className}`;
 
@@ -46,7 +46,7 @@ UI.prototype.showAlert = function (msg, className) {
 };
 
 /* Clear field */
-UI.prototype.clearFileds = function () {
+UI.prototype.clearFields = function () {
   title = document.getElementById("title").value = "";
   author = document.getElementById("author").value = "";
   isbn = document.getElementById("isbn").value = "";
